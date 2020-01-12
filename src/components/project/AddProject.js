@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { GET_ERRORS, createProject } from "../../actions/projectActions";
 
-export default class AddProject extends Component {
+class AddProject extends Component {
   constructor() {
     super();
     this.state = {
@@ -21,11 +24,11 @@ export default class AddProject extends Component {
     const newProject = {
       projectName: this.state.projectName,
       projectIdentifier: this.state.projectIdentifier,
-      description: this.state.projectDescription,
+      description: this.state.description,
       startDate: this.state.startDate,
       endDate: this.state.endDate
     };
-    console.log(newProject);
+    this.props.createProject(newProject, this.props.history);
   };
 
   render() {
@@ -100,3 +103,9 @@ export default class AddProject extends Component {
     );
   }
 }
+
+AddProject.propTypes = {
+  createProject: PropTypes.func.isRequired
+};
+
+export default connect(null, { createProject })(AddProject);

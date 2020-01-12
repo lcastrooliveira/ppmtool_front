@@ -10,7 +10,7 @@ import store from "./store";
 
 function App() {
   return (
-    <Provider>
+    <Provider store={store}>
       <Router>
         <div className="App">
           <Header />
